@@ -9,28 +9,13 @@ import { env } from "../../env";
 import { prewarmDecoderWorker } from "../../decoder/decoderWorker";
 
 const VOICE_OPTIONS = [
-  "NATF0.pt", "NATF1.pt", "NATF2.pt", "NATF3.pt",
-  "NATM0.pt", "NATM1.pt", "NATM2.pt", "NATM3.pt",
-  "VARF0.pt", "VARF1.pt", "VARF2.pt", "VARF3.pt", "VARF4.pt",
-  "VARM0.pt", "VARM1.pt", "VARM2.pt", "VARM3.pt", "VARM4.pt",
+  "UKRAINIAN_LESYA",
 ];
 
 const TEXT_PROMPT_PRESETS = [
   {
     label: "Assistant (default)",
-    text: "You are a wise and friendly teacher. Answer questions or provide advice in a clear and engaging way.",
-  },
-  {
-    label: "Medical office (service)",
-    text: "You work for Dr. Jones's medical office, and you are receiving calls to record information for new patients. Information: Record full name, date of birth, any medication allergies, tobacco smoking history, alcohol consumption history, and any prior medical conditions. Assure the patient that this information will be confidential, if they ask.",
-  },
-  {
-    label: "Bank (service)",
-    text: "You work for First Neuron Bank which is a bank and your name is Alexis Kim. Information: The customer's transaction for $1,200 at Home Depot was declined. Verify customer identity. The transaction was flagged due to unusual location (transaction attempted in Miami, FL; customer normally transacts in Seattle, WA).",
-  },
-  {
-    label: "Astronaut (fun)",
-    text: "You enjoy having a good conversation. Have a technical discussion about fixing a reactor core on a spaceship to Mars. You are an astronaut on a Mars mission. Your name is Alex. You are already dealing with a reactor core meltdown on a Mars mission. Several ship systems are failing, and continued instability will lead to catastrophic failure. You explain what is happening and you urgently ask for help thinking through how to stabilize the reactor.",
+    text: "Ти українськомовний голосовий асистент. Завжди уважно слухай співрозмовника і відповідай лише природною українською мовою. Не переходь на англійську.",
   },
 ];
 
@@ -106,10 +91,7 @@ const Homepage = ({
           >
             {VOICE_OPTIONS.map((voice) => (
               <option key={voice} value={voice}>
-                {voice
-                  .replace('.pt', '')
-                  .replace(/^NAT/, 'NATURAL_')
-                  .replace(/^VAR/, 'VARIETY_')}
+                {voice}
               </option>
             ))}
           </select>

@@ -1,0 +1,42 @@
+# Ukrainian language adaptation for the official kyutai-labs/moshi-finetune trainer.
+data:
+  train_data: "training/uk_UA/data/train.jsonl"
+  eval_data: "training/uk_UA/data/eval.jsonl"
+  shuffle: true
+
+moshi_paths:
+  hf_repo_id: "nvidia/personaplex-7b-v1"
+
+full_finetuning: false
+lora:
+  enable: true
+  rank: 128
+  scaling: 2.0
+  # Ukrainian relies heavily on byte-fallback pieces in the original tokenizer.
+  ft_embed: true
+
+first_codebook_weight_multiplier: 100.0
+text_padding_weight: 0.3
+
+duration_sec: 80
+batch_size: 1
+num_microbatches: 8
+max_steps: 5000
+gradient_checkpointing: true
+optim:
+  lr: 2.0e-6
+  weight_decay: 0.1
+  pct_start: 0.05
+
+seed: 42
+log_freq: 1
+eval_freq: 100
+do_eval: true
+do_ckpt: true
+ckpt_freq: 250
+num_ckpt_keep: 3
+
+# The local PersonaPlex server does not load LoRA adapters directly. Merge them
+# while checkpointing so --moshi-weight can load the result unchanged.
+save_adapters: false
+run_dir: "training/uk_UA/runs/personaplex-uk"
